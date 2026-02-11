@@ -1,4 +1,4 @@
-package com.smartcart.ecommerce.services.auditoraware;
+package com.smartcart.ecommerce.services.impl;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
