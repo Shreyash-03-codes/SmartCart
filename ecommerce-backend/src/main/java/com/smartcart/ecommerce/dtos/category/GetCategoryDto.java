@@ -8,4 +8,8 @@ import lombok.*;
 @Setter
 @Builder
 public class GetCategoryDto {
+    private Long id;
+    private String name;
+    private String description;
+    private String imagePath;
 }
