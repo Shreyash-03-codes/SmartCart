@@ -22,6 +22,8 @@ public class Category extends AuditEntity {
 
     private String description;
 
+    private String imagePath;
+
     @OneToMany(mappedBy = "category",orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Product> products;
 

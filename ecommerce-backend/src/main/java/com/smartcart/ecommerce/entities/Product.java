@@ -5,9 +5,11 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -42,6 +44,14 @@ public class Product extends AuditEntity{
 
     @Column(nullable = false)
     private boolean active;
+
+    @ElementCollection(fetch=FetchType.LAZY)
+    @CollectionTable(
+            name = "product_images",
+            joinColumns = @JoinColumn(name = "product_id")
+    )
+    @Column(name = "image_path")
+    private List<String> images;
 
     @ManyToOne
     @JoinColumn(name = "category_id",nullable = false)
