@@ -8,4 +8,7 @@ import lombok.*;
 @Setter
 @Builder
 public class GetUserProfileDto {
+    private String name;
+    private String email;
+    private String profilePhotoPath;
 }

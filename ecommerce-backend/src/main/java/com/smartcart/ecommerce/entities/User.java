@@ -35,6 +35,8 @@ public class User extends AuditEntity implements UserDetails {
     @Column(nullable = false,unique = true)
     private String email;
 
+    private String profilePhotoPath;
+
     @Column(nullable = true)
     private String password;
 

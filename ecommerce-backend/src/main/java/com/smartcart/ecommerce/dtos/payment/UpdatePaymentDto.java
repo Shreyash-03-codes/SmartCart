@@ -1,21 +1,14 @@
 package com.smartcart.ecommerce.dtos.payment;
 
-import com.smartcart.ecommerce.enums.PaymentMethod;
 import com.smartcart.ecommerce.enums.PaymentStatus;
 import lombok.*;
-
-import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
-public class GetPaymentDto {
+public class UpdatePaymentDto {
     private PaymentStatus paymentStatus;
-    private PaymentMethod paymentMethod;
-    private BigDecimal amount;
-    private Long paymentId;
-    private Long orderId;
     private String transactionId;
 }

@@ -8,4 +8,6 @@ import lombok.*;
 @Setter
 @Builder
 public class UpdateUserProfileDto {
+    private String name;
+    private String profilePhotoPath;
 }

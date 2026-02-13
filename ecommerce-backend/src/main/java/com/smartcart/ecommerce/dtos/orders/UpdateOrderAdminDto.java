@@ -1,5 +1,6 @@
 package com.smartcart.ecommerce.dtos.orders;
 
+import com.smartcart.ecommerce.enums.OrderStatus;
 import lombok.*;
 
 @AllArgsConstructor
@@ -8,4 +9,5 @@ import lombok.*;
 @Setter
 @Builder
 public class UpdateOrderAdminDto {
+    private OrderStatus orderStatus;
 }

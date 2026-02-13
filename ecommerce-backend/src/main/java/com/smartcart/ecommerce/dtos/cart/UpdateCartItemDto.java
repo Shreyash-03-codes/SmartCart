@@ -7,5 +7,6 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class UpdateCartDto {
+public class UpdateCartItemDto {
+    private Integer quantity;
 }
