@@ -8,4 +8,6 @@ import lombok.*;
 @Setter
 @Builder
 public class UpdateProductStockDto {
+    private Long id;
+    private Integer stockQuantity;
 }
