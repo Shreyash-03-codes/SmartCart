@@ -1,0 +1,15 @@
+package com.smartcart.ecommerce.modules.category.dtos;
+
+import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+public class UpdateCategoryDto {
+    private String name;
+    private String description;
+    private MultipartFile image;
+}

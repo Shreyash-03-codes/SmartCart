@@ -1,0 +1,17 @@
+package com.smartcart.ecommerce.modules.orderitem.dtos;
+
+import lombok.*;
+
+import java.math.BigDecimal;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class GetOrderItemDto {
+    private Long productId;
+    private String productName;
+    private Integer quantity;
+    private BigDecimal priceAtPurchase;
+}
