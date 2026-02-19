@@ -79,5 +79,16 @@ public class User extends AuditEntity implements UserDetails {
         return this.email;
     }
 
+    public void enableUser(){
+        this.enabled=true;
+    }
+    public void disableUser(){
+        this.enabled=false;
+    }
+
+    public void setPassword(String password){
+        this.password=password;
+    }
+
 
 }

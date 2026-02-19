@@ -1,0 +1,36 @@
+.footer {
+  background-color: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.brand {
+  font-weight: 700;
+}
+
+.brand-smart {
+  color: var(--primary); /* Blue */
+}
+
+.brand-cart {
+  color: var(--accent); /* Yellow */
+}
+
+.footer-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+
+.footer-links li {
+  margin-bottom: 6px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}

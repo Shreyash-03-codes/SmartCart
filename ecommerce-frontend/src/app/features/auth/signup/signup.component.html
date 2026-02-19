@@ -1,0 +1,105 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+
+    <!-- Brand -->
+    <h2 class="brand text-center mb-3">
+      <span class="brand-smart">Smart</span><span class="brand-cart">Cart</span>
+    </h2>
+
+    <p class="text-center text-muted mb-4">
+      Create your SmartCart account
+    </p>
+
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <!-- Name -->
+  <div class="mb-3">
+    <label class="form-label">Full Name</label>
+    <input formControlName="name" class="form-control" 
+            placeholder="Enter Full Name"
+
+           [class.is-invalid]="signupForm.get('name')?.invalid && signupForm.get('name')?.touched" />
+    <small class="text-danger" *ngIf="nameErrors">
+      {{ nameErrors }}
+    </small>
+  </div>
+
+  <!-- Email -->
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input formControlName="email" type="email" class="form-control"
+              placeholder="Enter Email"
+           [class.is-invalid]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" />
+    <small class="text-danger" *ngIf="emailErrors">
+      {{ emailErrors }}
+    </small>
+  </div>
+
+  <!-- Password -->
+  <div class="mb-3 position-relative">
+    <label class="form-label">Password</label>
+    <input [type]="showPassword ? 'text' : 'password'"
+           formControlName="password"
+            placeholder="Enter Password"
+
+           class="form-control pe-5"
+           [class.is-invalid]="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" />
+    <span class="password-toggle" (click)="togglePassword()">
+      {{ showPassword ? '🙈' : '👁️' }}
+    </span>
+    <small class="strength" [ngClass]="passwordStrength.toLowerCase()">
+      Strength: {{ passwordStrength }}
+    </small>
+    <small class="text-danger d-block" *ngIf="passwordErrors">
+      {{ passwordErrors }}
+    </small>
+  </div>
+
+  <!-- Confirm Password -->
+  <div class="mb-3 position-relative">
+    <label class="form-label">Confirm Password</label>
+    <input [type]="showConfirmPassword ? 'text' : 'password'"
+           formControlName="confirmPassword"
+           class="form-control pe-5"
+           placeholder="Confirm Password"
+           [class.is-invalid]="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched" />
+    <span class="password-toggle" (click)="toggleConfirmPassword()">
+      {{ showConfirmPassword ? '🙈' : '👁️' }}
+    </span>
+    <small class="text-danger" *ngIf="confirmPasswordErrors">
+      {{ confirmPasswordErrors }}
+    </small>
+  </div>
+
+  <!-- Submit -->
+  <button class="btn btn-primary w-100" type="submit" [disabled]="signupForm.invalid || isLoading">
+    <span *ngIf="!isLoading">Sign Up</span>
+    <span *ngIf="isLoading">
+      <span class="spinner"></span>
+      Creating account...
+    </span>
+  </button>
+</form>
+
+    <!-- Divider -->
+    <div class="divider my-3">
+      <span>OR</span>
+    </div>
+<!-- Google OAuth -->
+<button class="btn btn-outline-primary w-100 mb-3" (click)="callOAuth2()">
+  <img
+    src="https://developers.google.com/identity/images/g-logo.png"
+    alt="Google"
+    class="google-icon" />
+  Continue with Google
+</button>
+
+    <!-- Login redirect -->
+    <p class="text-center small">
+      Already have an account?
+      <a routerLink="/auth/login" class="auth-link fw-semibold">
+        Login
+      </a>
+    </p>
+
+  </div>
+</div>
