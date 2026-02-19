@@ -12,5 +12,4 @@ public class SignupRequestDto {
     private String name;
     private String email;
     private String password;
-    private MultipartFile profilePhoto;
 }

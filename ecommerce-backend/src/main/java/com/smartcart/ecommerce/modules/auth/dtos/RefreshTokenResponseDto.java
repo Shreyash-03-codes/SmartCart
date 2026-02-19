@@ -2,6 +2,8 @@ package com.smartcart.ecommerce.modules.auth.dtos;
 
 import lombok.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -11,5 +13,5 @@ public class RefreshTokenResponseDto {
     private String email;
     private String name;
     private String accessToken;
-    private String role;
+    private List<String> role;
 }

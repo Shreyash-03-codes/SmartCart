@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+:root {
+  /* Brand colors */
+  --primary: #3B82F6;        /* Soft Blue (Smart) */
+  --accent: #FACC15;         /* Warm Yellow (Cart) */
+
+  /* Hover / active */
+  --primary-hover: #2563EB;
+  --accent-hover: #EAB308;
+
+  /* Text & structure */
+  --dark: #111827;
+  --muted: #6B7280;
+
+  /* Backgrounds */
+  --bg: #FFFFFF;
+  --surface: #F9FAFB;
+  --border: #E5E7EB;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* App Layout */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
+/* Global body */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--dark);
+  padding-top: 72px;
+}
+ 
+
+

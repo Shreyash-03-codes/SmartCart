@@ -1,0 +1,34 @@
+.floating-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030;
+  background-color: #fff;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Brand */
+.brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.brand-smart {
+  color: var(--primary);
+}
+
+.brand-cart {
+  color: var(--accent);
+}
+
+.nav-link {
+  color: var(--dark);
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
