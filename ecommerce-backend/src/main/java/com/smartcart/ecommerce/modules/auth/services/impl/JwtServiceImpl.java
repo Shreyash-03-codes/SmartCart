@@ -20,7 +20,7 @@ public class JwtServiceImpl implements JwtService {
     @Value("${access.secret}")
     private String ACCESS_SECRET;
 
-    private final Long ACCESS_EXPIRATION=60*10L;
+    private final Long ACCESS_EXPIRATION=60*10*1000L;
 
     @Value("${refresh.secret}")
     private String REFRESH_SECRET;

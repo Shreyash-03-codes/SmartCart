@@ -49,7 +49,7 @@ public class User extends AuditEntity implements UserDetails {
     private boolean enabled;
 
     @Enumerated(EnumType.STRING)
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Column(nullable = false)
     @CollectionTable(
             name = "user_roles",
