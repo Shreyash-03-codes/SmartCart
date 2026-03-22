@@ -4,10 +4,7 @@ import com.smartcart.ecommerce.common.models.AuditEntity;
 import com.smartcart.ecommerce.modules.user.enums.Provider;
 import com.smartcart.ecommerce.modules.user.enums.Roles;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +18,7 @@ import java.util.Set;
 @Getter
 @Builder
 @Entity
+@Setter
 @Table(name = "users")
 public class User extends AuditEntity implements UserDetails {
 
@@ -86,9 +84,6 @@ public class User extends AuditEntity implements UserDetails {
         this.enabled=false;
     }
 
-    public void setPassword(String password){
-        this.password=password;
-    }
 
 
 }

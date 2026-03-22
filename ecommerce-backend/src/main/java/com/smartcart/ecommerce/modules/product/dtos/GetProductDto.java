@@ -12,13 +12,14 @@ import java.util.List;
 @Setter
 @Builder
 public class GetProductDto {
+    private Long id;
     private String name;
     private String description;
     private BigDecimal price;
     private Gender gender;
     private Integer stockQuantity;
     private boolean active;
-    private List<String> imagesPaths;
+    private List<String> images;
     private Long categoryId;
     private String categoryName;
 }

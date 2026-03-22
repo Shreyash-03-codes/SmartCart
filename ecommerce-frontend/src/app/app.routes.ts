@@ -8,6 +8,7 @@ import { HomeComponent } from './features/pages/home/home.component';
 import { ForgetPasswordComponent } from './features/auth/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './features/auth/reset-password/reset-password.component';
 import { VerifyEmailComponent } from './features/auth/verify-email/verify-email.component';
+import { CheckoutComponent } from './features/pages/checkout/checkout.component';
 
 export const routes: Routes = [
     {
@@ -33,7 +34,8 @@ export const routes: Routes = [
             {
                 path:"verify-email",
                 component:VerifyEmailComponent
-            }
+            },
+            
         ]
     },
     {
@@ -47,6 +49,10 @@ export const routes: Routes = [
             {
                 path:"home",
                 component:HomeComponent
+            },
+            {
+                path: 'checkout',
+                component: CheckoutComponent
             }
         ]
     }

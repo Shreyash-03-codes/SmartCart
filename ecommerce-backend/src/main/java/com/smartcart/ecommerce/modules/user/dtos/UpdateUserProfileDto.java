@@ -9,5 +9,4 @@ import lombok.*;
 @Builder
 public class UpdateUserProfileDto {
     private String name;
-    private String profilePhotoPath;
 }

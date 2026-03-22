@@ -2,6 +2,7 @@ package com.smartcart.ecommerce.modules.auth.configs;
 
 import com.smartcart.ecommerce.modules.auth.filters.JwtFilter;
 import com.smartcart.ecommerce.modules.auth.handlers.OAuth2SuccessHandler;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +45,16 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         auth->
                                 auth
-                                        .requestMatchers("/api/v1/auth/**","/uploads/**").permitAll()
+                                        .requestMatchers("/api/v1/auth/**","/uploads/**","/api/v1/auth/**",
+                                                "/uploads/**",
+                                                "/swagger-ui/**",
+                                                "/swagger-ui.html",
+                                                "/v3/api-docs",
+                                                "/v3/api-docs/**",
+                                                "/v3/api-docs.yaml",
+                                                "/swagger-resources/**",
+                                                "/webjars/**",
+                                                "/favicon.ico").permitAll()
                                         .anyRequest().authenticated()
                 )
                 .sessionManagement(

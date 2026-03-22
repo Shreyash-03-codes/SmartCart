@@ -4,20 +4,20 @@ import com.smartcart.ecommerce.common.models.AuditEntity;
 import com.smartcart.ecommerce.modules.product.model.Product;
 import com.smartcart.ecommerce.modules.user.model.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Entity
+@Setter
 @Table(
         name = "cart_items",
         uniqueConstraints ={
                 @UniqueConstraint(columnNames = {"user_id","product_id"})
         }
 )
+@Builder
 public class CartItem extends AuditEntity {
 
     @Id

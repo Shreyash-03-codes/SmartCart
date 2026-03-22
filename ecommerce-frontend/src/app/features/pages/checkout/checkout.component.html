@@ -1,0 +1,136 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-sm border-0 rounded-4">
+
+        <!-- Card Header -->
+        <div class="card-header bg-primary text-white rounded-top-4 py-3 px-4">
+          <div class="d-flex align-items-center gap-2">
+            <span>🛒</span>
+            <h5 class="mb-0 fw-semibold">SmartCart Checkout</h5>
+          </div>
+        </div>
+
+        <div class="card-body p-4">
+
+          <!-- ✅ SUCCESS STATE -->
+          @if (isSuccess) {
+            <div class="text-center py-4">
+              <div class="mb-3" style="font-size: 60px;">✅</div>
+              <h5 class="text-success fw-bold">Payment Successful!</h5>
+              <p class="text-muted small mb-1">Transaction ID</p>
+              <p class="fw-semibold small font-monospace bg-light rounded p-2">
+                {{ successTransactionId }}
+              </p>
+              <div class="alert alert-success small mt-3 mb-0">
+                Redirecting to your order confirmation...
+                <div class="spinner-border spinner-border-sm ms-2" role="status"></div>
+              </div>
+            </div>
+          }
+
+          <!-- ❌ FAILED STATE -->
+          @else if (isFailed) {
+            <div class="text-center py-4">
+              <div class="mb-3" style="font-size: 60px;">❌</div>
+              <h5 class="text-danger fw-bold">Payment Failed</h5>
+              <p class="text-muted small">{{ errorMessage }}</p>
+              <button class="btn btn-outline-primary mt-2 px-4" (click)="onRetry()">
+                Try Again
+              </button>
+            </div>
+          }
+
+          <!-- 💳 PAYMENT FORM -->
+          @else {
+
+            <!-- Order Summary Box -->
+            <div class="bg-light rounded-3 p-3 mb-4">
+              <p class="text-muted small mb-2 fw-semibold text-uppercase">Order Summary</p>
+              <div class="d-flex justify-content-between small mb-1">
+                <span class="text-muted">Order ID</span>
+                <span class="fw-semibold">#{{ orderId }}</span>
+              </div>
+              <hr class="my-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="text-muted">Total Payable</span>
+                <span class="fw-bold text-primary fs-4">₹{{ orderTotal }}</span>
+              </div>
+            </div>
+
+            <!-- Payment Method -->
+            <p class="text-muted small fw-semibold text-uppercase mb-2">
+              Select Payment Method
+            </p>
+
+            <!-- UPI -->
+            <div class="form-check border rounded-3 p-3 mb-2 cursor-pointer"
+              [class.border-primary]="selectedPaymentMethod === PaymentMethod.UPI"
+              [class.bg-primary]="selectedPaymentMethod === PaymentMethod.UPI"
+              [class.bg-opacity-10]="selectedPaymentMethod === PaymentMethod.UPI">
+              <input class="form-check-input" type="radio"
+                name="paymentMethod" id="upi"
+                [value]="PaymentMethod.UPI"
+                [(ngModel)]="selectedPaymentMethod">
+              <label class="form-check-label w-100 ms-1" for="upi" style="cursor:pointer">
+                <span class="fw-semibold">UPI</span>
+                <span class="text-muted small d-block">Google Pay, PhonePe, Paytm</span>
+              </label>
+            </div>
+
+            <!-- Credit / Debit Card -->
+            <div class="form-check border rounded-3 p-3 mb-2"
+              [class.border-primary]="selectedPaymentMethod === PaymentMethod.CARD"
+              [class.bg-primary]="selectedPaymentMethod === PaymentMethod.CARD"
+              [class.bg-opacity-10]="selectedPaymentMethod === PaymentMethod.CARD">
+              <input class="form-check-input" type="radio"
+                name="paymentMethod" id="card"
+                [value]="PaymentMethod.CARD"
+                [(ngModel)]="selectedPaymentMethod">
+              <label class="form-check-label w-100 ms-1" for="card" style="cursor:pointer">
+                <span class="fw-semibold">Credit / Debit Card</span>
+                <span class="text-muted small d-block">Visa, Mastercard, RuPay</span>
+              </label>
+            </div>
+
+            <!-- Net Banking -->
+            <div class="form-check border rounded-3 p-3 mb-3"
+              [class.border-primary]="selectedPaymentMethod === PaymentMethod.NET_BANKING"
+              [class.bg-primary]="selectedPaymentMethod === PaymentMethod.NET_BANKING"
+              [class.bg-opacity-10]="selectedPaymentMethod === PaymentMethod.NET_BANKING">
+              <input class="form-check-input" type="radio"
+                name="paymentMethod" id="netbanking"
+                [value]="PaymentMethod.NET_BANKING"
+                [(ngModel)]="selectedPaymentMethod">
+              <label class="form-check-label w-100 ms-1" for="netbanking" style="cursor:pointer">
+                <span class="fw-semibold">Net Banking</span>
+                <span class="text-muted small d-block">All major banks supported</span>
+              </label>
+            </div>
+
+            <!-- Pay Button -->
+            <div class="d-grid mt-2">
+              <button class="btn btn-primary btn-lg rounded-3 fw-semibold"
+                (click)="onPayNow()"
+                [disabled]="isLoading">
+                @if (isLoading) {
+                  <span class="spinner-border spinner-border-sm me-2"></span>
+                  Processing...
+                } @else {
+                  Pay ₹{{ orderTotal }}
+                }
+              </button>
+            </div>
+
+            <!-- Security note -->
+            <p class="text-center text-muted small mt-3 mb-0">
+              🔒 100% Secure payments powered by Razorpay
+            </p>
+
+          }
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

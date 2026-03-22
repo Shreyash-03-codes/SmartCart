@@ -1,7 +1,7 @@
 package com.smartcart.ecommerce.common.advices;
 
 import com.smartcart.ecommerce.common.dtos.error.ErrorResponse;
-import com.smartcart.ecommerce.common.dtos.reponse.ApiResponse;
+import com.smartcart.ecommerce.common.dtos.reponse.ApiResult;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -20,14 +20,21 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
     @Override
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
 
-        if(body instanceof ApiResponse<?>){
+        String path = request.getURI().getPath();
+        if (path.startsWith("/v3/api-docs") ||
+                path.startsWith("/swagger-ui") ||
+                path.startsWith("/swagger-resources") ||
+                path.startsWith("/webjars")) {
+            return body;
+        }
+        if(body instanceof ApiResult<?>){
             return body;
         }
 
         if(body instanceof ErrorResponse){
-            return new ApiResponse<>((ErrorResponse) body);
+            return new ApiResult<>((ErrorResponse) body);
         }
 
-        return new ApiResponse<>(body);
+        return new ApiResult<>(body);
     }
 }

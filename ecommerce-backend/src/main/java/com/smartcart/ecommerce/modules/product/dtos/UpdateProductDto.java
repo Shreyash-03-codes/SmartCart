@@ -19,6 +19,5 @@ public class UpdateProductDto {
     private Gender gender;
     private Integer stockQuantity;
     private boolean active;
-    private List<MultipartFile> images;
     private Long categoryId;
 }

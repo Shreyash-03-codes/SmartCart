@@ -32,6 +32,9 @@ public class Product extends AuditEntity {
     @Column(nullable = false)
     private String name;
 
+    @Version
+    private Integer version;
+
     private String description;
 
     @Column(nullable = false)

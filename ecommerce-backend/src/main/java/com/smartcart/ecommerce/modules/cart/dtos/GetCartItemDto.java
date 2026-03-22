@@ -11,9 +11,10 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class GetCartItemDto {
+    private Long cartItemId;
     private Long productId;
     private String productName;
     private BigDecimal productPrice;
-    private List<String> imagePath;
+    private List<String> imagePaths;
     private Integer quantity;
 }

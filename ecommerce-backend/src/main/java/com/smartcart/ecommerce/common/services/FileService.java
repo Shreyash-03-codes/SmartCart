@@ -14,7 +14,7 @@ public class FileService {
 
     private final static String UPLOAD_DIR="uploads/";
 
-    public String storeCategoryImage(MultipartFile file){
+    public String storeImage(MultipartFile file){
 
         try{
             String fileName= UUID.randomUUID().toString()+"_"+file.getOriginalFilename();

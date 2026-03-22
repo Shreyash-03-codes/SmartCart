@@ -13,6 +13,7 @@ import com.smartcart.ecommerce.modules.category.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,13 +27,14 @@ public class CategoryServiceImpl implements CategoryService {
     private final ModelMapper mapper;
 
     @Override
+    @Transactional
     public GenericResponseDto createCategory(CreateCategoryDto createCategoryDto) {
 
         if(categoryRepository.findByName(createCategoryDto.getName()).isPresent()){
             throw new CategoryExistsAlreadyException("Category already exists with name "+createCategoryDto.getName());
         }
 
-        String imagePath=fileService.storeCategoryImage(createCategoryDto.getImage());
+        String imagePath=fileService.storeImage(createCategoryDto.getImage());
 
         Category category=Category
                 .builder()
@@ -50,6 +52,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public GenericResponseDto updateCategory(UpdateCategoryDto updateCategoryDto, Long categoryId) {
 
         Category category=categoryRepository.findById(categoryId).orElseThrow(()->new CategoryNotPresentException("Category does not exists with id "+categoryId));
@@ -63,7 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         if(updateCategoryDto.getImage()!=null && !updateCategoryDto.getImage().isEmpty()){
-            String filePath=fileService.storeCategoryImage(updateCategoryDto.getImage());
+            String filePath=fileService.storeImage(updateCategoryDto.getImage());
             category.setImagePath(filePath);
         }
         categoryRepository.save(category);
@@ -74,6 +77,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public GenericResponseDto deleteCategory(Long categoryId) {
         Category category=categoryRepository.findById(categoryId).orElseThrow(()->new CategoryNotPresentException("Category does not exists with id "+categoryId));
         if(category.getImagePath()!=null){

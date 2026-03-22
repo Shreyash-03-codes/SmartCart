@@ -1,6 +1,5 @@
 package com.smartcart.ecommerce.modules.order.dtos;
 
-import com.smartcart.ecommerce.modules.orderitem.dtos.GetOrderItemDto;
 import com.smartcart.ecommerce.modules.order.enums.OrderStatus;
 import lombok.*;
 

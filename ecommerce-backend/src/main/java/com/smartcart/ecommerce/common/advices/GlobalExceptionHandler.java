@@ -10,8 +10,22 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.naming.AuthenticationException;
 
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = "com.smartcart.ecommerce")
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ErrorResponse> runtimeException(RuntimeException ex){
+        if (ex instanceof ClassCastException) {
+            throw ex;
+        }
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
+                ErrorResponse
+                        .builder()
+                        .status(HttpStatus.FORBIDDEN.name())
+                        .description(ex.getMessage())
+                        .build()
+        );
+    }
 
     @ExceptionHandler(UserNotVerifiedException.class)
     public ResponseEntity<ErrorResponse> userNotVerifiedException(UserNotVerifiedException userNotVerifiedException){
@@ -137,5 +151,74 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
+    @ExceptionHandler(CategoryExistsAlreadyException.class)
+    public ResponseEntity<ErrorResponse> categoryExistsAlreadyException(CategoryExistsAlreadyException ex){
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(
+                        ErrorResponse
+                                .builder()
+                                .status(HttpStatus.BAD_REQUEST.name())
+                                .description(ex.getMessage())
+                                .build()
+                );
+    }
+
+    @ExceptionHandler(CategoryNotPresentException.class)
+    public ResponseEntity<ErrorResponse> categoryNotPresentException(CategoryNotPresentException ex){
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(
+                        ErrorResponse
+                                .builder()
+                                .status(HttpStatus.BAD_REQUEST.name())
+                                .description(ex.getMessage())
+                                .build()
+                );
+    }
+
+    @ExceptionHandler(ProductAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> productAlreadyExistsException(ProductAlreadyExistsException ex){
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(
+                        ErrorResponse
+                                .builder()
+                                .status(HttpStatus.BAD_REQUEST.name())
+                                .description(ex.getMessage())
+                                .build()
+                );
+    }
+
+    @ExceptionHandler(ProductDoesNotExistsException.class)
+    public ResponseEntity<ErrorResponse> productDoesNotExistsException(ProductDoesNotExistsException ex){
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(
+                        ErrorResponse
+                                .builder()
+                                .status(HttpStatus.BAD_REQUEST.name())
+                                .description(ex.getMessage())
+                                .build()
+                );
+    }
+
+    @ExceptionHandler(OrderNotPresentException.class)
+    public ResponseEntity<ErrorResponse> orderNotPresentException(OrderNotPresentException ex){
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(
+                        ErrorResponse
+                                .builder()
+                                .status(HttpStatus.BAD_REQUEST.name())
+                                .description(ex.getMessage())
+                                .build()
+                );
+    }
+
+
+
+
 
 }

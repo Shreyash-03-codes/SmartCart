@@ -5,10 +5,7 @@ import com.smartcart.ecommerce.modules.payment.enums.PaymentMethod;
 import com.smartcart.ecommerce.modules.payment.enums.PaymentStatus;
 import com.smartcart.ecommerce.modules.order.model.Order;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 import java.math.BigDecimal;
@@ -18,6 +15,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 @Entity
+@Setter
 @Table(name = "payments")
 public class Payment extends AuditEntity {
 
@@ -40,6 +38,7 @@ public class Payment extends AuditEntity {
     private BigDecimal amount;
 
     @OneToOne
+    @JoinColumn(name = "order_id")
     private Order order;
 
 }
